@@ -32,5 +32,6 @@ int main() {
   char *data = req + sizeof(int);
   futex_wait(futex_word, 0);
   printf("Message: %s\n", data);
+  close(fd);
   return 0;
 }

@@ -36,5 +36,6 @@ int main() {
   strcpy(data, "hello, world!\n");
   *futex_word = 1;
   futex_wake(futex_word, 1);
+  close(fd);
   return 0;
 }

@@ -2,25 +2,25 @@ CC = gcc
 CCFLAGS = -std=c11 -Wall -Wextra -g
 BUILD = build
 
-.PHONY: all
-all:
+.PHONY: serde
+serde:
 	mkdir -p $(BUILD)
-	client server buffer
+	$(CC) -std=c11 -Wall -Wextra serde.c -mavx2 -O2 -o $(BUILD)/serde
 
 .PHONY: client
 client: 
 	mkdir -p $(BUILD)
-	$(CC) $(CCFLAGS) -c client.c -o $(BUILD)/client
+	$(CC) $(CCFLAGS) client.c -o $(BUILD)/client
 
 .PHONY: server
 server:
 	mkdir -p $(BUILD)
-	$(CC) $(CCFLAGS) -c server.c -o $(BUILD)/server
+	$(CC) $(CCFLAGS) server.c -o $(BUILD)/server
 
 .PHONY: buffer
 buffer: 
 	mkdir -p $(BUILD)
-	$(CC) $(CCFLAGS) -c buffer.c test_buffer.c -o $(BUILD)/buffer
+	$(CC) $(CCFLAGS) buffer.c test_buffer.c -o $(BUILD)/buffer
 
 .PHONY: clean
 clean:
